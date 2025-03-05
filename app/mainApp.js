@@ -8,8 +8,8 @@ import HelloWorldScreen from './helloWorldScreen-if.js';
 
 export class MainApp extends AbstractApp {
   
-  constructor(wsURL) {
-    super(wsURL);
+  constructor(platform, wsURL) {
+    super(platform, wsURL);
 
     this.screen = new HelloWorldScreen(this, this.ctx);
     this.screen.init();

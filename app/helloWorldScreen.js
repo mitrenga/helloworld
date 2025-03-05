@@ -8,16 +8,16 @@ import HelloWorldView from './helloWorldView-if.js';
 
 export class HelloWorldScreen extends AbstractScreen {
   
-  constructor(canvas, ctx) {
-    super(canvas, ctx, 'HelloWorldScreen');
+  constructor(app, ctx) {
+    super(app, ctx, 'HelloWorldScreen');
   } // constructor
 
   init() {
     super.init();
 
-    this.borderView.backgroundColor = this.zxColor('green');
-    this.desktopView.backgroundColor = this.zxColor('white');
-    this.desktopView.addView(new HelloWorldView(this, 0, 0, this.desktopWidth, 8, this.zxColor('red')));
+    this.borderView.bkColor = this.app.colorByName('green');
+    this.desktopView.bkColor = this.app.colorByName('white');
+    this.desktopView.addView(new HelloWorldView(this.desktopView, 0, 0, this.desktopWidth, 8, this.app.colorByName('red')));
   } // init
 
 } // class HelloWorldScreen

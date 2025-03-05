@@ -7,8 +7,8 @@ import AbstractView from './rg-lib/js/platforms/zxSpectrum/zxTextView.js';
 
 export class HelloWorldView extends ZXTextView {
 
-  constructor(screen, x, y, width, height, penColor) {
-    super(screen, x, y, width, height, 'Hello world!', penColor, false, 0, false);
+  constructor(parentView, x, y, width, height, penColor) {
+    super(parentView, x, y, width, height, 'Hello world!', penColor, false, 0, false);
     this.id = 'HelloWorldView';
   } // constructor
 

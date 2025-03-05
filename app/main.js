@@ -1,10 +1,13 @@
 /**/
 const { MainApp } = await import('./mainApp.js?ver='+window.srcVersion);
+const { ZXSpectrum48KPlatform } = await import('./rg-lib/js/platforms/zxSpectrum/zxSpectrum48KPlatform.js?ver='+window.srcVersion);
 /*/
 import MainApp from './mainApp-if.js';
+import ZXSpectrum48KPlatform from './rg-lib/js/platforms/zxSpectrum/zxSpectrum48KPlatform-if.js';
 /**/
 
-var mainApp = new MainApp(window.wsURL);
+var platform = new ZXSpectrum48KPlatform();
+var mainApp = new MainApp(platform, window.wsURL);
 var startGameAnimationTimestamp = 0;
 var audio = null;
 
