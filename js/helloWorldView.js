@@ -1,4 +1,4 @@
-/**/
+/*/
 const { ZXTextView } = await import('./rg-lib/js/platforms/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
 /*/
 import ZXTextView from './rg-lib/js/platforms/zxSpectrum/zxTextView.js';
