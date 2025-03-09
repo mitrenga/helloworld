@@ -5,6 +5,7 @@ const { HelloWorldScreen } = await import('./helloWorldScreen.js?ver='+window.sr
 import AbstractApp from './rg-lib/js/abstractApp.js';
 import HelloWorldScreen from './helloWorldScreen.js';
 /**/
+// begin code
 
 export class MainApp extends AbstractApp {
   

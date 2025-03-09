@@ -1,9 +1,9 @@
 /*/
-const { ZXTextView } = await import('./rg-lib/js/platforms/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
+const { ZXTextView } = await import('./rg-lib/js/platform/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
 /*/
-import ZXTextView from './rg-lib/js/platforms/zxSpectrum/zxTextView.js';
+import ZXTextView from './rg-lib/js/platform/zxSpectrum/zxTextView.js';
 /**/
-
+// begin code
 
 export class HelloWorldView extends ZXTextView {
 

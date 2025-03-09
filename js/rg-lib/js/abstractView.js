@@ -3,6 +3,7 @@
 /*/
 
 /**/
+// begin code
 
 export class AbstractView {
 
@@ -34,6 +35,55 @@ export class AbstractView {
   addView(view) {
     this.views.push(view);
   } // addView
+  
+  sendEvent(direction, timing, message) {
+    if (timing == 0) {
+      switch (direction) {
+        case -1:
+          if (this.parentView != null) {
+            if (this.parentView.handleEvent(message) == false) {
+              for (var v = 0; v < this.parentView.views.length; v++) {
+                if (this.parentView.views[v].handleEvent(message) == true) {
+                  break;
+                }
+              }
+            }
+          }
+          break;
+        case 0:
+          this.screen.sendEvent(0, message);
+          break;
+        case 1:
+          for (var v = 0; v < this.views.length; v++) {
+            if (this.views[v].handleEvent(message) == true) {
+              break;
+            }
+          }
+          break;
+      }
+    } else {
+      this.screen.sendEvent(timing, message);
+    }
+  } // sendEvent
+
+  cancelEvent(id) {
+    this.screen.cancelEvent(id);
+  } // cancelEvent
+
+  handleEvent(message) {
+    for (var v = 0; v < this.views.length; v++) {
+      if (this.views[v].handleEvent(message) == true) {
+        return true;
+      }
+    }
+    return false;
+  } // handleEvent
+  
+  setData(data) {
+    for (var v = 0; v < this.views.length; v++) {
+      this.views[v].setData(data);
+    }
+  } // setData
 
   paint(x, y, width, height, color) {
     this.screen.ctx.fillStyle = color;

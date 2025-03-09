@@ -7,6 +7,7 @@ import AbstractView from './abstractView.js';
 import DesktopView from './desktopView.js';
 import BorderView from './borderView.js';
 /**/
+// begin code
 
 export class AbstractScreen {
 
@@ -16,37 +17,79 @@ export class AbstractScreen {
     this.id = id;
 
     this.flashState = 0;
-    this.lastTime = null;
-    this.timeDiff = null;
-    this.now = null;
+    this.now = Date.now();
 
-    this.desktopWidth = this.app.platform.desktop()['width'];
-    this.desktopHeight = this.app.platform.desktop()['height'];
-    this.minimalBorder = this.app.platform.border()['minimal'];
-    this.optimalBorder = this.app.platform.border()['optimal'];
+    this.borderView = null;
     this.borderWidth = 0;
     this.borderHeight = 0;
-    this.desktop = null;
+    this.minimalBorder = 0;
+    this.optimalBorder = 0;
+    if (this.app.platform.border() !== false) {
+      this.minimalBorder = this.app.platform.border()['minimal'];
+      this.optimalBorder = this.app.platform.border()['optimal'];
+    }
+
+    this.desktopView = null;
+    this.desktopWidth = this.app.platform.desktop()['width'];
+    this.desktopHeight = this.app.platform.desktop()['height'];
+
+    this.messages = [];
   } // constructor
 
   init() {
-    this.borderView = new BorderView(null, 0, 0, 0, 0);
-    this.borderView.app = this.app;
-    this.borderView.screen = this;
-    this.borderView.bkColor = this.app.platform.border()['defaultColor'];
+    if (this.app.platform.border() !== false) {
+      this.borderView = new BorderView(null, 0, 0, 0, 0);
+      this.borderView.app = this.app;
+      this.borderView.screen = this;
+      this.borderView.bkColor = this.app.platform.border()['defaultColor'];
+    }
     this.desktopView = new DesktopView(null, 0, 0, 0, 0);
     this.desktopView.app = this.app;
     this.desktopView.screen = this;
     this.desktopView.bkColor = this.app.platform.desktop()['defaultColor'];
   } // init
 
+  sendEvent(timing, message) {
+    if (timing == 0) {
+      this.handleEvent(message);
+    } else {
+      this.messages.push({'id': message['id'], 'timing': this.now+timing, 'message': message});
+    }
+  } // sendEvent
+
+  cancelEvent(id) {
+    for (var m = 0; m < this.messages.length; m++) {
+      if (id == this.messages[m]['id']) {
+        this.messages.splice(m, 1);
+      }
+    }
+  } // cancelEvent
+
+  handleEvent(message) {
+    var result = false;
+    if (this.borderView != null) {
+      result = this.borderView.handleEvent(message);
+    }
+    if (result == false) {
+      this.desktopView.handleEvent(message);
+    }
+  } // handleEvent
+
+  setData(data) {
+    if (this.borderView != null) {
+      this.borderView.setData(data);
+    }
+    this.desktopView.setData(data);
+    this.drawScreen();
+  } // setData
+
   loopScreen() {
     this.now = Date.now();
-    if (this.lastTime != null) {
-      this.timeDiff = this.now - this.lastTime;
-    } else {
-      this.lastTime = this.now;
-      this.timeDiff = 0;
+    for (var m = 0; m < this.messages.length; m++) {
+      if (this.messages[m]['timing'] <= this.now) {
+        this.sendEvent(0, this.messages[m]['message']);
+        this.messages.splice(m, 1);
+      }
     }
   } // loopScreen
 
@@ -56,7 +99,9 @@ export class AbstractScreen {
   } // resizeScreen
 
   drawScreen() {
-    this.borderView.drawView();
+    if (this.borderView != null) {
+      this.borderView.drawView();
+    }
     this.desktopView.drawView();
   } // drawScreen
 
