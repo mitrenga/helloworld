@@ -10,7 +10,7 @@ import HelloWorldScreen from './helloWorldScreen.js';
 export class MainApp extends AbstractApp {
   
   constructor(platform, wsURL) {
-    super(platform, wsURL);
+    super(platform, 'bodyApp', wsURL);
 
     this.screen = new HelloWorldScreen(this, this.ctx);
     this.screen.init();
