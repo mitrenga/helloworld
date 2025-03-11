@@ -1,7 +1,7 @@
 /**/
-const { ZXTextView } = await import('./rg-lib/js/platform/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
+const { ZXTextView } = await import('./svision/js/platform/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
 /*/
-import ZXTextView from './rg-lib/js/platform/zxSpectrum/zxTextView.js';
+import ZXTextView from './svision/js/platform/zxSpectrum/zxTextView.js';
 /**/
 // begin code
 

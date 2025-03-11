@@ -1,16 +1,17 @@
 /**/
-const { AbstractScreen } = await import('./rg-lib/js/abstractScreen.js?ver='+window.srcVersion);
+const { AbstractScreen } = await import('./svision/js/abstractScreen.js?ver='+window.srcVersion);
 const { HelloWorldView } = await import('./helloWorldView.js?ver='+window.srcVersion);
 /*/
-import AbstractScreen from './rg-lib/js/abstractScreen.js';
+import AbstractScreen from './svision/js/abstractScreen.js';
 import HelloWorldView from './helloWorldView.js';
 /**/
 // begin code
 
 export class HelloWorldScreen extends AbstractScreen {
   
-  constructor(app, ctx) {
-    super(app, ctx, 'HelloWorldScreen');
+  constructor(app) {
+    super(app);
+    this.id = 'HelloWorldScreen';
   } // constructor
 
   init() {
