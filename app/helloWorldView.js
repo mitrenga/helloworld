@@ -1,7 +1,7 @@
 /**/
-const { ZXTextView } = await import('./svision/js/platform/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
+const { ZXTextView } = await import('./svision/js/platform/canvas2D/zxSpectrum/zxTextView.js?ver='+window.srcVersion);
 /*/
-import ZXTextView from './svision/js/platform/zxSpectrum/zxTextView.js';
+import ZXTextView from './svision/js/platform/canvas2D/zxSpectrum/zxTextView.js';
 /**/
 // begin code
 
