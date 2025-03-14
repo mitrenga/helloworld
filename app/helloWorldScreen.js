@@ -17,9 +17,9 @@ export class HelloWorldScreen extends AbstractScreen {
   init() {
     super.init();
 
-    this.borderView.bkColor = this.app.colorByName('green');
-    this.desktopView.bkColor = this.app.colorByName('white');
-    this.desktopView.addView(new HelloWorldView(this.desktopView, 0, 0, this.desktopWidth, 8, this.app.colorByName('red')));
+    this.borderView.bkColor = this.app.platform.colorByName('green');
+    this.desktopView.bkColor = this.app.platform.colorByName('white');
+    this.desktopView.addView(new HelloWorldView(this.desktopView, 0, 0, this.desktopWidth, 8, this.app.platform.colorByName('red')));
   } // init
 
 } // class HelloWorldScreen
