@@ -37,5 +37,5 @@ mainApp.element.onclick = function (e) {
 // join resize event
 window.addEventListener('resize', resizeGame);
 
-resizeGame();  // calc actual screen size
+resizeGame();  // calc actual model size
 loopGame();    // start game
