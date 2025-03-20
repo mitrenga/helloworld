@@ -24,18 +24,8 @@ function loopGame(timestamp) {
   requestAnimationFrame(loopGame);
 } // loopGame
 
-// disable right click popup me
-mainApp.element.oncontextmenu = function (e) {
-  e.preventDefault();
-};
-
-// join mouse events
-mainApp.element.onclick = function (e) { 
-  mainApp.onClick(e);
-};
-
-// join resize event
-window.addEventListener('resize', resizeGame);
+// resize event
+window.onresize = function(e) { resizeGame(); }
 
 resizeGame();  // calc actual model size
 loopGame();    // start game
