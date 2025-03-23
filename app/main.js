@@ -28,4 +28,4 @@ function loopGame(timestamp) {
 window.onresize = function(e) { resizeGame(); }
 
 resizeGame();  // calc actual model size
-loopGame();    // start game
+loopGame(0);    // start game
