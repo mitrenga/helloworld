@@ -8,24 +8,14 @@ import appPlatform from './appPlatform.js';
 // begin code
 
 var mainApp = new MainApp(appPlatform(), window.wsURL);
-var audio = null;
 
-function resizeGame() {
-  var elementRoot = document.documentElement;
-  if (window.innerHeight != mainApp.element.height) {
-    elementRoot.style.setProperty('--app-height', window.innerHeight+'px');
-  }
-  mainApp.resizeApp();
-} // resizeGame
-
-// main loop
 function loopGame(timestamp) {
   mainApp.loopApp(timestamp);
   requestAnimationFrame(loopGame);
 } // loopGame
 
-// resize event
-window.onresize = function(e) { resizeGame(); }
+window.onresize = function(event) { mainApp.eventResizeWindow(event); }
 
-resizeGame();  // calc actual model size
-loopGame(0);    // start game
+// start application
+mainApp.resizeApp();
+requestAnimationFrame(loopGame);
