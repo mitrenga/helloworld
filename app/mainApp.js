@@ -9,8 +9,8 @@ import HelloWorldModel from './helloWorldModel.js';
 
 export class MainApp extends AbstractApp {
   
-  constructor(platform, wsURL) {
-    super(platform, 'bodyApp', wsURL);
+  constructor(platform, importPath, wsURL) {
+    super(platform, 'bodyApp', importPath, wsURL);
 
     this.model = new HelloWorldModel(this);
     this.model.init();
