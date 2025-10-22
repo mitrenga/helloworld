@@ -22,6 +22,6 @@ export class HelloWorldModel extends AbstractModel {
     this.desktopEntity.addEntity(new TextEntity(this.desktopEntity, this.app.fonts.zxFonts8x8Mono, 0, 0, this.desktopWidth, 8, 'Hello world!', this.app.platform.colorByName('red'), false, {}));
   } // init
 
-} // class HelloWorldModel
+} // HelloWorldModel
 
 export default HelloWorldModel;

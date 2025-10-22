@@ -21,6 +21,6 @@ export class MainApp extends AbstractApp {
     this.model.init();
   } // constructor
 
-} // class MainApp
+} // MainApp
 
 export default MainApp;
