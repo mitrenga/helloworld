@@ -14,7 +14,7 @@ function loopGame(timestamp) {
   requestAnimationFrame(loopGame);
 } // loopGame
 
-window.onresize = function(event) { mainApp.eventResizeWindow(event); }
+window.addEventListener('resize', (event) => mainApp.eventResizeWindow(event));
 
 // start application
 mainApp.resizeApp();
